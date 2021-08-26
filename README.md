@@ -26,20 +26,23 @@ Because the _sof pasuq_, and _maqqef_ are treated as individual tokens, the `ppr
 
 ## Using the lexical data
 
-Finally, `load_lex` returns a tuple of dictionaries `(glosses, strongs, lemmas)`, where `glosses` is a dictionary of Hebrew lemmas -> glosses, `strongs` is a dictionary of Strong's numbers -> glosses, and `lemmas` is a dictionary of Strong's numbers -> Hebrew text of the lemma.
+Finally, `HEBLEX` is a class containing three data mappings encapuslated in three functions. 
+* `lemma_to_gloss` takes Hebrew lemma and returns a gloss.
+* `strongs_to_gloss` takes a Strongs number and returns a gloss. 
+* `strongs_to_lemma` takes a Strongs number and returns a Hebrew lemma.
 
 Thus all of the following statements would be true.
 
 ```
-glosses, strongs, lemmas = load_lex()
+LEXDATA = HEBLEX()
 
-assert glosses['אָב'] == 'father'
+assert LEXDATA.lemma_to_gloss('אָב') == 'father'
 
-assert strongs['1'] == 'father'
+assert LEXDATA.strongs_to_gloss('1') == 'father'
 
-assert lemmas['1'] == 'אָב'
+assert LEXDATA.strongs_to_lemma('1') == 'אָב'
 
-assert glosses[lemmas['1']] == 'אָב'
+assert LEXDATA.lemma_to_gloss(LEXDATA.strongs_to_lemma('1')) == 'אָב'
 ```
 
 
@@ -54,7 +57,7 @@ The source xml files are taken from the Open Scriptures Hebrew Bible Project's [
 
 ## Lexical data
 
-The Lexical data is taken from the Open Scriptures Hebrew Bible Project's [The OSHB Hebrew Lexicon](https://github.com/openscriptures/HebrewLexicon) which is released under a [Creative Commons Attribution 4.0 International](http://creativecommons.org/licenses/by/4.0/). The text of Brown Driver, Briggs Hebrew Lexicon and Strong's Hebrew Dictionary are in the Public Domain per the OSHB Hebrew Lexicon repository. 
+The Lexical data is taken from the Open Scriptures Hebrew Bible Project's [The OSHB Hebrew Lexicon](https://github.com/openscriptures/HebrewLexicon) which is released under a [Creative Commons Attribution 4.0 International](http://creativecommons.org/licenses/by/4.0/). I have modified it to include entries for the Hebrew punctuation and paragraph makers. The text of Brown Driver, Briggs Hebrew Lexicon and Strong's Hebrew Dictionary are in the Public Domain per the OSHB Hebrew Lexicon repository. 
 
 # License
 

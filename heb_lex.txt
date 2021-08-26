@@ -1,3 +1,8 @@
+x-pe	x	x	פ	pe
+x-samekh	x	x	ס	samekh
+x-sof-pasuq	x	x	׃	sof pasuq
+x-maqqef	x	x	־	maqqef
+x-paseq	x	x	׀	paseq
 3	aab	a.ab.ab	אֵב	freshness|fresh green|while in its freshness|green shoots
 1	aac	a.ae.ab	אָב	father
 5	aae	a.ab.ae	אֲבַגְתָא	

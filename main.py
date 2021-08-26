@@ -81,10 +81,21 @@ def get_tokens_by_chunk(token_type, chunk_type):
 
 def pprint_text(items):
     return ' '.join(items).replace(' ׃', '׃').replace(' ־ ', '־').replace(' /', '')
-    
+ 
+def load_pericope_verse_map():
+    data = {}
+    with open(os.path.join(os.path.dirname(__file__),'pericope_verse_map.txt'), 'r', encoding="UTF-8") as f:
+        for line in f:
+            pid, start, end = line.strip().split(" ", maxsplit=2)
+            data[pid] = (start, end)
+    return data
 
 if __name__ == "__main__":
-    for token in get_tokens(TokenType.form, ChunkType.verse, "Gen.1.1"):
-        print(token)
+    from heb_lex_tools import HEBLEX
+    glosser = HEBLEX()
+    for token in get_tokens(TokenType.lemma, ChunkType.verse, "Gen.1.1"):
+        print(f"{token}: '{glosser.strongs_to_gloss(token)}'")
+    
+    
     with open('test.txt', 'w', encoding="UTF-8") as f:
         print(pprint_text(get_tokens_by_chunk(TokenType.form, ChunkType.verse)["Gen.1.1"]), file=f)
