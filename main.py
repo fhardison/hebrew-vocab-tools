@@ -80,7 +80,7 @@ def get_tokens_by_chunk(token_type, chunk_type):
 
 
 def pprint_text(items):
-    return ' '.join(items).replace(' ׃', '׃').replace(' ־ ', '־').replace(' /', '')
+    return ' '.join(items).replace(' ׃', '׃').replace(' ־ ', '־').replace(' /', '').replace('/', '')
  
 def load_pericope_verse_map():
     data = {}
