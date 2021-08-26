@@ -80,10 +80,11 @@ def get_tokens_by_chunk(token_type, chunk_type):
 
 
 def pprint_text(items):
-    return ' '.join(items).replace(' ׃', '׃').replace(' ־ ', '־')
+    return ' '.join(items).replace(' ׃', '׃').replace(' ־ ', '־').replace(' /', '')
     
 
 if __name__ == "__main__":
     for token in get_tokens(TokenType.form, ChunkType.verse, "Gen.1.1"):
         print(token)
-    print(pprint_text(get_tokens_by_chunk(TokenType.form, ChunkType.verse)["Gen.1.1"]))
+    with open('test.txt', 'w', encoding="UTF-8") as f:
+        print(pprint_text(get_tokens_by_chunk(TokenType.form, ChunkType.verse)["Gen.1.1"]), file=f)
