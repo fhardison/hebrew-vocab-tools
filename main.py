@@ -78,6 +78,9 @@ def get_tokens_by_chunk(token_type, chunk_type):
         for chunk_id in chunk_ids[chunk_type]
     }
 
+def get_chunk_ids(chunk_type):
+    return chunk_ids[chunk_type]
+
 
 def pprint_text(items):
     return ' '.join(items).replace(' ׃', '׃').replace(' ־ ', '־').replace(' /', '').replace('/', '')
