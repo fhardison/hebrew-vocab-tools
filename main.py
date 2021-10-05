@@ -27,13 +27,12 @@ def load_chunk_data():
                 try:
                     chunk_id, token_start, token_end = line.strip().split(maxsplit=2)
                     chunk_data[(chunk_type, chunk_id)] = (
-    
                         int(token_start), int(token_end)
                     )
                     chunk_ids[chunk_type].append(chunk_id)
                 except:
                     print(line)
-                    exit()
+                    sys.exit()
 
 
 def load_wlc():
@@ -55,9 +54,10 @@ def load_tokens():
         token_data[token_type.parse].append(parse)
         token_data[token_type.all].append((form, lemma, parse))
 
-            
+
 load_tokens()
 load_chunk_data()
+
 
 def get_tokens(token_type, chunk_type=None, chunk_id=None):
     if chunk_type and chunk_id:
@@ -78,13 +78,15 @@ def get_tokens_by_chunk(token_type, chunk_type):
         for chunk_id in chunk_ids[chunk_type]
     }
 
+
 def get_chunk_ids(chunk_type):
     return chunk_ids[chunk_type]
 
 
 def pprint_text(items):
     return ' '.join(items).replace(' ׃', '׃').replace(' ־ ', '־').replace(' /', '').replace('/', '')
- 
+
+
 def load_pericope_verse_map():
     data = {}
     with open(os.path.join(os.path.dirname(__file__),'pericope_verse_map.txt'), 'r', encoding="UTF-8") as f:
@@ -93,12 +95,12 @@ def load_pericope_verse_map():
             data[pid] = (start, end)
     return data
 
+
 if __name__ == "__main__":
     from heb_lex_tools import HEBLEX
     glosser = HEBLEX()
     for token in get_tokens(TokenType.lemma, ChunkType.verse, "Gen.1.1"):
         print(f"{token}: '{glosser.strongs_to_gloss(token)}'")
-    
-    
+
     with open('test.txt', 'w', encoding="UTF-8") as f:
         print(pprint_text(get_tokens_by_chunk(TokenType.form, ChunkType.verse)["Gen.1.1"]), file=f)
