@@ -20,6 +20,10 @@ Available token types are:
 * morph_lemma (a tuple of `(parse, lemma)`)
 * all (a tuple of `(form, lemma, parse)`)
 
+## Parse codes
+
+The parse codes can be fround here <https://hb.openscriptures.org/parsing/HebrewMorphologyCodes.html>
+
 ## Pretty printing text
 
 Because the _sof pasuq_, and _maqqef_ are treated as individual tokens, the `pprint_text` function takes a list tokens and returns a string with appropriate spacing for the _maqqef_ and _sof pasuq_. 
